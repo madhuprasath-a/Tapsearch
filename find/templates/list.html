@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+</head>
+<body>
+<div id="d1">
+  <p id="p1">LIST</p>
+</div>
+<div class="topnav">
+<a href="/">HOME</a>
+<a href="/find/">FIND</a>
+{% comment %} <a href="/file/">FILE</a> {% endcomment %}
+<a href="/inverted/">INVERTED</a>
+</div>
+<div id="div4a">
+<form action = "/find/" method="post" id="forms">
+ {% csrf_token %}
+<div id="d4">
+  <label>ENTER SOMETHING TO SEARCH:</label><br><br><br>
+  <input type="text" name="search" placeholder="name" required autocomplete="off"><br><br>
+  {% comment %} <textarea  rows="6" cols="50" name="para" placeholder="enter something..."></textarea><br><br> {% endcomment %}
+   <input type="Submit">
+  </div>
+</form>
+<div>
+ {%for l in result %}
+      <p>{{l}}</p>
+ {% endfor %} 
+ 
+</div>
+{%  for messege in messages %}
+      <h4>{{ messege }}</h4>
+ {% endfor%}
+</div>
+</body>
+</html>

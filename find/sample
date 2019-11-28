@@ -1,0 +1,56 @@
+for term in range(len(a)):
+               format = "{}:{}".format(term+1,a[term])
+               print(format)
+
+
+#    def freq():
+    #        str = para.split()          
+    #        str2 = [] 
+    #        for i in str:
+    #           if i not in str2:
+    #              str2.append(i)
+    #        for i in range(0,len(str2)):
+    #           print('Frequency of', str2[i], 'is :', str.count(str2[i]))
+    #    freq()
+
+
+def add(request): 
+    if request.method == 'POST':
+       para = request.POST["para"] 
+       para = para.lower()
+       para = re.sub(r'[^\w\s]','', para)
+       words = para.split()
+       str = []
+       a = Word.objects.all()
+
+       for word in words:
+            if word not in a:
+                d = Word(word=word)
+                d.save()
+               
+       c = Para(para=para) 
+       c.save()
+       objects = Para.objects.all()
+       for object in range(len(objects)):
+           align = "{}:{}".format(object+1,objects[object])
+           print(align)
+       return render(request,'msg.html',)
+    else:
+      print('invaid')
+
+    
+
+def add(request): 
+    if request.method == 'POST':
+        para = request.POST["para"]
+        para = para.lower()   #change to lowercase
+        para = re.sub(r'[^\w\s]','', para)  #remove all punctuation
+        words = para.split() #split a para word by word
+        words = list(set(words)) #first convert into set(in set it doesn't have duplicate values) then it converted into list
+        paragraph = Para.objects.create(para=para) #creating a paragraph in model
+        for word in words: #loop through the words
+            obj, created = Unique.objects.get_or_create(word=word)     #get_or_created if word is already in db it doesnot create a new word the 'created' becomes false..if the word not inside a db it create a new one in Unique model
+            obj.location.add(paragraph) #in unique model the location field add that paragraph
+        return render(request, 'msg.html',)
+    else:
+        return render(request, 'msg.html',)

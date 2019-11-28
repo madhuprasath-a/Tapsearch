@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Rokkitt&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="d1">
+<p id="p1">DEMO PROJECT</p>
+</div>
+<div class="topnav">
+<a href="/">HOME</a>
+<a href="/find/">FIND</a>
+{% comment %} <a href="/file/">FILE</a> {% endcomment %}
+<a href="/inverted/">INVERTED</a>
+</div>
+
+<body id="body1">
+<form action = "/add/" method="post" id="form1">
+ {% csrf_token %}
+<div id="d4">
+  <label>ENTER YOUR PARAGRAPH:</label><br><br><br>
+  {% comment %} <input type="text" name="name" placeholder="name" required autocomplete="off"><br><br> {% endcomment %}
+  <textarea  rows="6" cols="50" name="para" placeholder="Start typing Here..." required autocomplete="off"></textarea><br><br>
+   <input type="Submit">
+  </div>
+  </form>
+  </div>
+ 
+ 
+</body>
+
+
+</html>
