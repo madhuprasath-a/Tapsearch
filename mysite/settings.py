@@ -25,7 +25,7 @@ SECRET_KEY = 'mxn)!)aw-tx(@t^3xy@myn5nq*4w14h#_jxlk*@xp(xa&xyad3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['invertedsearch.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
