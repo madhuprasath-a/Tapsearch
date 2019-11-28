@@ -25,7 +25,23 @@ def add(request):
     else:
         return render(request, 'msg.html',)
 
+'''inverted search'''
 
+def inverted(request):
+     if request.method == 'POST':
+        word = request.POST['search'] #get the word from user
+        word = word.lower() #convert into Lowercase
+        unique = Unique.objects.filter(word=word).first()
+        
+        if unique:
+            return render(request, 'user.html', {'result':unique.location.all().values()})
+        else:
+            messages.info(request, 'No Results found')
+            return render(request, 'user.html')
+     else:
+        return render(request,'user.html')
+
+''' normal query to find the word in paragraph'''
 
 def find(request):
     if request.method == 'POST':
@@ -46,6 +62,7 @@ def find(request):
     else:
         return render(request,'list.html')
 
+'''file upload'''
 
 def file(request):
     if request.method == 'POST':
@@ -57,19 +74,7 @@ def file(request):
     return render(request,'product.html')
 
 
-def inverted(request):
-     if request.method == 'POST':
-        word = request.POST['search'] #get the word from user
-        word = word.lower() #convert into Lowercase
-        unique = Unique.objects.filter(word=word).first()
-        
-        if unique:
-            return render(request, 'user.html', {'result':unique.location.all().values()})
-        else:
-            messages.info(request, 'No Results found')
-            return render(request, 'user.html')
-     else:
-        return render(request,'user.html')
+
     
 # unique = Unique.objects.filter(unique=word).first().location.all().values('id', 'para')
 # above first match the given word in unique db.then select the first word and match their locations in location field and return the all values
